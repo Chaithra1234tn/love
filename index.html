@@ -21,14 +21,7 @@
         color: #b30000;
         text-align: center;
         font-size: 40px;
-        margin-bottom: 50px;
-        animation: fade 3s infinite;
-    }
-
-    @keyframes fade {
-        0% { opacity: 0; }
-        50% { opacity: 1; }
-        100% { opacity: 0; }
+        margin-bottom: 20px;
     }
 
     #question {
@@ -36,7 +29,7 @@
         margin-bottom: 30px;
         text-align: center;
         color: #800000;
-        display: none; /* Hide initially */
+        display: none; /* Hidden initially */
     }
 
     .btn {
@@ -47,12 +40,13 @@
         cursor: pointer;
         margin: 10px;
         position: relative;
-        display: none; /* Hide initially */
+        display: none; /* Hidden initially */
     }
 
     #yes {
         background-color: #ff4d4d;
         color: white;
+        position: relative;
     }
 
     #no {
@@ -73,7 +67,6 @@
         0% { transform: translateY(100vh); opacity: 1; }
         100% { transform: translateY(-10vh); opacity: 0; }
     }
-
 </style>
 </head>
 <body>
@@ -99,29 +92,32 @@
         "My heart beats for you and only you 💓💑"
     ];
 
-    let i = 0;
     const messageEl = document.getElementById("message");
     const questionEl = document.getElementById("question");
     const yesBtn = document.getElementById("yes");
     const noBtn = document.getElementById("no");
 
-    // Show messages one by one every 3 seconds
+    let i = 0;
+
+    // Show messages one by one
     const messageInterval = setInterval(() => {
         if (i < messages.length) {
             messageEl.innerText = messages[i];
             i++;
         } else {
-            // All messages done, stop interval
-            clearInterval(messageInterval);
-
+            clearInterval(messageInterval); // Stop after last message
             // Show question and buttons
             questionEl.style.display = "block";
             yesBtn.style.display = "inline-block";
             noBtn.style.display = "inline-block";
+
+            // Position Yes and No buttons side by side
+            yesBtn.style.position = "relative";
+            noBtn.style.position = "relative";
         }
     }, 3000);
 
-    // Handle No button moving
+    // No button moves randomly when hovered
     noBtn.addEventListener('mouseover', () => {
         const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
         const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
@@ -129,9 +125,12 @@
         noBtn.style.top = y + 'px';
     });
 
-    // Yes button click
+    // Yes button click shows Happy Valentine's message
     yesBtn.addEventListener('click', () => {
-        alert("I knew it! I love you ❤️");
+        messageEl.innerText = "Happy Valentine’s Day ❤️";
+        questionEl.style.display = "none";
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
     });
 
     // Floating hearts
@@ -144,6 +143,7 @@
         document.body.appendChild(heart);
         setTimeout(() => heart.remove(), 6000);
     }, 400);
+
 </script>
 
 </body>
