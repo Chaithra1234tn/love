@@ -28,3 +28,127 @@
         font-size: 26px;
         color: #800000;
         margin-bottom: 25px;
+        display: none;
+    }
+
+    .buttons {
+        position: relative;
+        width: 320px;
+        height: 120px;
+        display: none;
+    }
+
+    button {
+        padding: 15px 30px;
+        font-size: 20px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+    }
+
+    #yes {
+        background-color: #ff4d4d;
+        color: white;
+        position: absolute;
+        left: 0;
+        top: 40px;
+    }
+
+    #no {
+        background-color: #4d79ff;
+        color: white;
+        position: absolute;
+        left: 180px;
+        top: 40px;
+    }
+
+    /* Floating hearts */
+    .heart {
+        position: absolute;
+        color: pink;
+        animation: float 6s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(100vh); opacity: 1; }
+        100% { transform: translateY(-10vh); opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<h1 id="message"></h1>
+
+<div id="question">Do you like your wife? 💕</div>
+
+<div class="buttons" id="btnBox">
+    <button id="yes">Yes 💖</button>
+    <button id="no">No ❌</button>
+</div>
+
+<script>
+    const messages = [
+        "You are my favorite person 🥰",
+        "I ❤️ you forever",
+        "Being with you makes me happiest",
+        "You make my heart smile 😊❤️",
+        "Life is better with you 💕",
+        "My heart beats for you and only you 💓👩‍❤️‍👨"
+    ];
+
+    const messageEl = document.getElementById("message");
+    const questionEl = document.getElementById("question");
+    const btnBox = document.getElementById("btnBox");
+    const yesBtn = document.getElementById("yes");
+    const noBtn = document.getElementById("no");
+
+    let i = 0;
+
+    // Show messages first
+    const interval = setInterval(() => {
+        if (i < messages.length) {
+            messageEl.innerText = messages[i];
+            i++;
+        } else {
+            clearInterval(interval);
+            questionEl.style.display = "block";
+            btnBox.style.display = "block";
+        }
+    }, 3000);
+
+    // Move No button within container
+    noBtn.addEventListener("mouseenter", () => {
+        const box = btnBox.getBoundingClientRect();
+        const maxX = box.width - noBtn.offsetWidth;
+        const maxY = box.height - noBtn.offsetHeight;
+
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    });
+
+    // Yes click
+    yesBtn.addEventListener("click", () => {
+        messageEl.innerText = "Happy Valentine’s Day ❤️🌹";
+        questionEl.style.display = "none";
+        btnBox.style.display = "none";
+    });
+
+    // Floating hearts
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerText = "💗";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (16 + Math.random() * 20) + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+    }, 500);
+</script>
+
+</body>
+</html>
