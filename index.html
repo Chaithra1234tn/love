@@ -2,149 +2,29 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Message for My Love ❤️</title>
+<title>For My Love ❤️</title>
+
 <style>
     body {
         margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
         height: 100vh;
+        font-family: Arial, sans-serif;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         background: linear-gradient(to right, #ff9a9e, #fad0c4);
         overflow: hidden;
-        flex-direction: column;
+        text-align: center;
     }
 
     h1 {
         color: #b30000;
-        text-align: center;
-        font-size: 40px;
+        font-size: 42px;
         margin-bottom: 20px;
     }
 
     #question {
-        font-size: 28px;
-        margin-bottom: 30px;
-        text-align: center;
+        font-size: 26px;
         color: #800000;
-        display: none; /* Hidden initially */
-    }
-
-    .btn {
-        padding: 15px 30px;
-        font-size: 20px;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        margin: 10px;
-        position: relative;
-        display: none; /* Hidden initially */
-    }
-
-    #yes {
-        background-color: #ff4d4d;
-        color: white;
-        position: relative;
-    }
-
-    #no {
-        background-color: #4d79ff;
-        color: white;
-        position: absolute;
-    }
-
-    /* Floating hearts */
-    .heart {
-        position: absolute;
-        color: red;
-        font-size: 20px;
-        animation: float 6s linear infinite;
-    }
-
-    @keyframes float {
-        0% { transform: translateY(100vh); opacity: 1; }
-        100% { transform: translateY(-10vh); opacity: 0; }
-    }
-</style>
-</head>
-<body>
-
-<h1 id="message"></h1>
-
-<div id="question">Do you like your wife?</div>
-
-<div>
-    <button id="yes" class="btn">Yes ❤️</button>
-    <button id="no" class="btn">No ❌</button>
-</div>
-
-<script>
-    const messages = [
-        "You are my favorite person 🥰",
-        "I ❤️ You forever",
-        "Being with you makes me happiest",
-        "You make my heart smile 😊❤️",
-        "Life is better with you 💕",
-        "You are my rock and my joy 🪨💛",
-        "With you, I've found my forever 🥰💍",
-        "My heart beats for you and only you 💓💑"
-    ];
-
-    const messageEl = document.getElementById("message");
-    const questionEl = document.getElementById("question");
-    const yesBtn = document.getElementById("yes");
-    const noBtn = document.getElementById("no");
-
-    let i = 0;
-
-    // Show messages one by one
-    const messageInterval = setInterval(() => {
-        if (i < messages.length) {
-            messageEl.innerText = messages[i];
-            i++;
-        } else {
-            clearInterval(messageInterval); // Stop after last message
-            // Show question and buttons
-            questionEl.style.display = "block";
-            yesBtn.style.display = "inline-block";
-            noBtn.style.display = "inline-block";
-
-            // Position Yes and No buttons side by side
-            yesBtn.style.position = "relative";
-            noBtn.style.position = "relative";
-        }
-    }, 3000);
-
-    // No button moves randomly when hovered
-    noBtn.addEventListener('mouseover', () => {
-        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-        noBtn.style.left = x + 'px';
-        noBtn.style.top = y + 'px';
-    });
-
-    // Yes button click shows Happy Valentine's message
-    yesBtn.addEventListener('click', () => {
-        messageEl.innerText = "Happy Valentine’s Day ❤️";
-        questionEl.style.display = "none";
-        yesBtn.style.display = "none";
-        noBtn.style.display = "none";
-    });
-
-    // Floating hearts
-    setInterval(() => {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerText = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (20 + Math.random() * 20) + "px";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 6000);
-    }, 400);
-
-</script>
-
-</body>
-</html>
+        margin-bottom: 25px;
