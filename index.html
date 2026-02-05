@@ -89,7 +89,7 @@
 </div>
 
 <script>
-    const messages = [
+  const messages = [
         "You are my favorite person 🥰",
         "I ❤️ you forever",
         "Being with you makes me happiest",
@@ -106,7 +106,6 @@
 
     let i = 0;
 
-    // Show messages first
     const interval = setInterval(() => {
         if (i < messages.length) {
             messageEl.innerText = messages[i];
@@ -118,36 +117,34 @@
         }
     }, 3000);
 
-    // Move No button within container
+    // 👀 Make NO run FAR away
     noBtn.addEventListener("mouseenter", () => {
         const box = btnBox.getBoundingClientRect();
+        const yes = yesBtn.getBoundingClientRect();
+
         const maxX = box.width - noBtn.offsetWidth;
         const maxY = box.height - noBtn.offsetHeight;
 
-        const x = Math.random() * maxX;
-        const y = Math.random() * maxY;
+        let x, y;
+        const minDistance = 120; // 👈 distance from Yes
+
+        do {
+            x = Math.random() * maxX;
+            y = Math.random() * maxY;
+        } while (
+            Math.abs(x - (yes.left - box.left)) < minDistance &&
+            Math.abs(y - (yes.top - box.top)) < minDistance
+        );
 
         noBtn.style.left = x + "px";
         noBtn.style.top = y + "px";
     });
 
-    // Yes click
     yesBtn.addEventListener("click", () => {
         messageEl.innerText = "Happy Valentine’s Day ❤️🌹";
         questionEl.style.display = "none";
         btnBox.style.display = "none";
     });
-
-    // Floating hearts
-    setInterval(() => {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerText = "💗";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (16 + Math.random() * 20) + "px";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 6000);
-    }, 500);
 </script>
 
 </body>
